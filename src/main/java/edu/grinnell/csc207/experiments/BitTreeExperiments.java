@@ -1,11 +1,11 @@
 package edu.grinnell.csc207.experiments;
 
-import edu.grinnell.csc207.util.BitTree;
-
 import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+
+import edu.grinnell.csc207.util.BitTree;
 
 /**
  * Some experiments with Bit Trees.
