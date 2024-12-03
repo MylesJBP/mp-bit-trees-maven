@@ -10,7 +10,7 @@ import edu.grinnell.csc207.util.BitTree;
 /**
  * Some experiments with Bit Trees.
  *
- * @author Your Name Here
+ * @author Myles Bohrer-Purnell
  * @author Samuel A. Rebelsky
  */
 public class BitTreeExperiments {
