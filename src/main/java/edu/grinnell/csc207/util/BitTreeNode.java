@@ -1,5 +1,10 @@
 package edu.grinnell.csc207.util;
 
+/**
+ * A linked-list node to store elements in a BitTree.
+ *
+ * @author Myles Bohrer-Purnell
+ */
 public class BitTreeNode {
 
   /** Child node to left of the current node. */
@@ -15,6 +20,7 @@ public class BitTreeNode {
    * Constructs a new current node, with pointers to the nodes on either side of it.
    * @param lNode the left child
    * @param rNode the right child
+   * @param val String value to store in the node
    */
   public BitTreeNode(BitTreeNode lNode, BitTreeNode rNode, String val) {
     this.leftNode = lNode;

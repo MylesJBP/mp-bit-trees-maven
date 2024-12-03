@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 /**
- * Trees intended to be used in storing mappings between fixed-length 
+ * Trees intended to be used in storing mappings between fixed-length
  * sequences of bits and corresponding values.
  *
  * @author Myles Bohrer-Purnell
@@ -38,7 +38,12 @@ public class BitTree {
   // +---------------+-----------------------------------------------
   // | Local helpers |
   // +---------------+
-
+  /**
+   * Recursive implementation of searching and printing the values in a BitTree.
+   * @param pen PenWriter for printing elements in tree
+   * @param curNode the current node that is being checked
+   * @param curResultOrig the cumulative path to the current node
+   */
   public void dumpHelper(PrintWriter pen, BitTreeNode curNode, String curResultOrig) {
     String curResult = curResultOrig;
     if (curNode != null) {
@@ -153,7 +158,7 @@ public class BitTree {
         bitVal = line.split(",");
         set(bitVal[0], bitVal[1]);
       } // while
-    } catch(Exception eof) {
+    } catch (Exception eof) {
       // end the proccess if issue
     } // try/catch
   } // load(InputStream)
