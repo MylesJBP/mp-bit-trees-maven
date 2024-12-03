@@ -35,20 +35,24 @@ public class BrailleASCII {
             pen.printf(tempHold);
           } catch (Exception e) {
             pen.printf("\n");
-            pen.println("Trouble Translation because " + e.getMessage());
+            pen.println("Trouble Translation because no corresponding value");
             i = args[1].length();
           } // try/catch
         } // for
         pen.printf("\n");
         break;
       case "unicode":
-        String resultString = "";
         for (int i = 0; i < args[1].length(); i++) {
-          String tempHoldUni = BrailleAsciiTables.toBraille(args[1].charAt(i));
-          resultString = resultString.concat(tempHoldUni);
+          try {
+            String tempHoldUni = BrailleAsciiTables.toBraille(args[1].charAt(i));
+            pen.printf(BrailleAsciiTables.toUnicode(tempHoldUni));
+          } catch (Exception e) {
+            pen.printf("\n");
+            pen.println("Trouble Translation because no corresponding value" + e.getMessage());
+            i = args[1].length();
+          } // try/catch
         } // for
-        String resultStr = BrailleAsciiTables.toUnicode(resultString);
-        pen.println(resultStr);
+        pen.printf("\n");
         break;
       case "ascii":
         // check for correct braille input length

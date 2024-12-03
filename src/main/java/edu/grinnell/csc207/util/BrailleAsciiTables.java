@@ -236,7 +236,11 @@ public class BrailleAsciiTables {
     int letterVal = (int) letter;
     String binStr = Integer.toBinaryString(letterVal);
 
-    return a2bTree.get("0" + binStr);
+    if (letter == ' ') {
+      return a2bTree.get("00" + binStr);
+    } else {
+      return a2bTree.get("0" + binStr);
+    } // if/else
   } // toBraille(char)
 
   /**
@@ -265,8 +269,8 @@ public class BrailleAsciiTables {
     // Convert string to Unicode character
     String uniChars = b2uTree.get(bits);
     int uniInt = Integer.parseInt(uniChars, 16);
-    char uniCh = (char) uniInt;
-    String uniStr = Character.toString(uniCh);
+    char[] uniCh = Character.toChars(uniInt);
+    String uniStr = new String(uniCh);
 
     return uniStr;
   } // toUnicode(String)
