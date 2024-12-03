@@ -1,13 +1,13 @@
 package edu.grinnell.csc207.util;
 
 import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  *
  *
- * @author Your Name Here
+ * @author Myles Bohrer-Purnell
  * @author Samuel A. Rebelsky
  */
 public class BrailleAsciiTables {
@@ -202,14 +202,32 @@ public class BrailleAsciiTables {
   // +----------------+
 
   /**
-   *
+   * Converts an ASCII character to a string of bits
+   * representing the corresponding braille character.
+   * @param letter ASCII character
+   * @return the Braille representation of the ASCII character
    */
   public static String toBraille(char letter) {
-    return "";  // STUB
+    // Make sure we've loaded the ASCII-to-braille tree.
+    if (null == a2bTree) {
+      a2bTree = new BitTree(7);
+      InputStream a2bStream = new ByteArrayInputStream(a2b.getBytes());
+      a2bTree.load(a2bStream);
+      try {
+        a2bStream.close();
+      } catch (IOException e) {
+        // We don't care if we can't close the stream.
+      } // try/catch
+    } // if
+    String binaryStr = Integer.toBinaryString(letter);
+    return "" + a2bTree.get(binaryStr);
   } // toBraille(char)
 
   /**
-   *
+   * converts a string of bits representing a braille
+   * character to the corresponding ASCII character.
+   * @param bits braille character bits
+   * @return ASCII character representation of the braille
    */
   public static String toAscii(String bits) {
     // Make sure we've loaded the braille-to-ASCII tree.
@@ -223,13 +241,29 @@ public class BrailleAsciiTables {
         // We don't care if we can't close the stream.
       } // try/catch
     } // if
-    return "";  // STUB
+    return "" + b2aTree.get(bits);
   } // toAscii(String)
 
   /**
-   *
+   * converts a string of bits representing a braille
+   * character to the corresponding Unicode braille character.
+   * @param bits braille character bits
+   * @return Unicode representation of the braille character
    */
   public static String toUnicode(String bits) {
-    return "";  // STUB
+    // Make sure we've loaded the braille-to-Unicode tree.
+    if (null == b2uTree) {
+      b2uTree = new BitTree(8);
+      InputStream b2uStream = new ByteArrayInputStream(b2u.getBytes());
+      b2uTree.load(b2uStream);
+      try {
+        b2uStream.close();
+      } catch (IOException e) {
+        // We don't care if we can't close the stream.
+      } // try/catch
+    } // if
+
+    String uniChars = Character.toString(Integer.parseInt(b2uTree.get(bits)));
+    return "" + uniChars;
   } // toUnicode(String)
 } // BrailleAsciiTables
