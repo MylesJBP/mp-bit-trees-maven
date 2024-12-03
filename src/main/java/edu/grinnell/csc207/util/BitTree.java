@@ -58,6 +58,15 @@ public class BitTree {
     } // if
   } // dumpHelper
 
+  /**
+   * Checks if some path input is the right length for the tree.
+   * @param bits the string path to be checked
+   * @return True if correct or False if incorrect
+   */
+  public boolean lengthCheck(String bits) {
+    return (bits.length() == this.num);
+  } // lengthCheck()
+
   // +---------+-----------------------------------------------------
   // | Methods |
   // +---------+
@@ -71,7 +80,7 @@ public class BitTree {
    * @param value the value to be added at the end
    */
   public void set(String bits, String value) throws IndexOutOfBoundsException {
-    if (bits.length() != this.num) {
+    if (!lengthCheck(bits)) {
       throw new IndexOutOfBoundsException("Wrong Lengthed Path Input");
     } // if
     BitTreeNode curNode = startNode;
@@ -109,7 +118,7 @@ public class BitTree {
    * @return the value at the end of the path or an exception if incorrect path
    */
   public String get(String bits) {
-    if (bits.length() != this.num) {
+    if (!lengthCheck(bits)) {
       throw new IndexOutOfBoundsException("Wrong Lengthed Path Input");
     } // if
     BitTreeNode curNode = startNode;
